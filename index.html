@@ -10,6 +10,7 @@
   h1 { font-size: 1.5rem; margin-bottom: 4px; }
   h2 { font-size: 1.1rem; margin-top: 24px; }
   video { width: 100%; max-width: 480px; border-radius: 10px; background: #000; display: block; margin: 12px 0; }
+  #preview { width: 100%; max-width: 480px; border-radius: 10px; display: none; margin: 12px 0; }
   canvas { display: none; }
   button, label.upload { display: inline-block; padding: 10px 18px; margin: 4px 8px 4px 0; font-size: 1rem; border: none; border-radius: 8px; background: #2e7d32; color: #fff; cursor: pointer; }
   label.upload { background: #456990; }
@@ -28,6 +29,7 @@
 <h1>Leaf Classifier</h1>
 <p id="status">Loading model…</p>
 <video id="video" playsinline muted autoplay></video>
+<img id="preview" alt="Uploaded photo">
 <div>
   <button id="startBtn">Start camera</button>
   <label class="upload">Upload photo<input type="file" id="fileInput" accept="image/*" hidden></label>
@@ -80,6 +82,7 @@ let cameraTimer = null;
 
 document.getElementById('startBtn').addEventListener('click', async () => {
   try {
+    document.getElementById('preview').style.display = 'none'; // camera view replaces the photo preview
     const stream = await navigator.mediaDevices.getUserMedia({ video: { facingMode: 'environment' }, audio: false });
     video.srcObject = stream;
     await video.play();
@@ -95,9 +98,14 @@ document.getElementById('fileInput').addEventListener('change', e => {
   const file = e.target.files[0];
   if (!file) return;
   if (cameraTimer) { clearInterval(cameraTimer); cameraTimer = null; } // photo result would be overwritten by the camera loop
+  const preview = document.getElementById('preview');
   const img = new Image();
   img.onload = () => runInference(img, img.naturalWidth, img.naturalHeight);
   img.src = URL.createObjectURL(file);
+  preview.src = img.src;
+  preview.style.display = 'block';
+});
+
 });
 
 function classifyVideo() {
