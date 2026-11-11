@@ -1,0 +1,4 @@
+family,variant,parent,change,train_set,epochs,seed,valA,cameraA,testB,testH,seconds
+leaf,B1,-,baseline,A,15,0,0.6071,0.5214,0.4828,0.4250,28.3
+leaf,L_best,B1,best epoch weights,A,15,0,0.6071,0.5214,0.4828,0.4250,19.5
+mob,M_frozen,B2,frozen backbone,A,15,0,0.6071,0.5643,0.5862,0.5167,22.5
