@@ -4,3 +4,64 @@ leaf,L_best,B1,best epoch weights,A,15,0,0.6071,0.5214,0.4828,0.4250,19.5
 mob,M_frozen,B2,frozen backbone,A,15,0,0.6071,0.5643,0.5862,0.5167,22.5
 leaf,L_gap,B1,global average pooling,A,15,0,0.4643,0.5071,0.2759,0.4417,11.7
 leaf,L_cos,B1,"cosine schedule, 30 epochs",A,30,0,0.6786,0.5643,0.3448,0.4417,22.6
+mob,B2,-,baseline,A,15,0,0.6429,0.5714,0.6207,0.4833,20.4
+leaf,L_color,B1,colour jitter,A,15,0,0.5357,0.4714,0.4138,0.4250,14.0
+leaf,L_drop,B1,dropout 0.3,A,15,0,0.6071,0.5286,0.3793,0.3917,15.4
+leaf,L_adamw,B1,"AdamW, weight decay 1e-2",A,15,0,0.6071,0.5143,0.4828,0.4417,17.1
+leaf,L_ls,B1,label smoothing 0.1,A,15,0,0.6429,0.5357,0.4483,0.4417,10.6
+mob,M_aug,B2,geometric augmentation,A,15,0,0.6071,0.6286,0.6897,0.5000,16.5
+mob,M_cos,B2,"cosine schedule, 30 epochs",A,30,0,0.7500,0.7286,0.7241,0.6583,32.3
+mob,M_best,B2,best epoch weights,A,15,0,0.7143,0.7071,0.5172,0.5250,17.6
+leaf,L_dataB,B1,training images +B,AB,15,0,0.6071,0.4643,in-train,0.5000,21.0
+leaf,L_dataH,B1,training images +H,AH,15,0,0.6071,0.5643,0.7241,in-train,85.4
+leaf,L_dataBH,B1,training images +B+H,ABH,15,0,0.4286,0.5143,in-train,in-train,83.6
+mob,M_dataB,B2,training images +B,AB,15,0,0.6429,0.7071,in-train,0.6417,31.4
+mob,M_dataH,B2,training images +H,AH,15,0,0.7143,0.7214,0.6897,in-train,116.9
+mob,M_dataBH,B2,training images +B+H,ABH,15,0,0.8214,0.7357,in-train,in-train,200.3
+leaf,L_combo1,B1,colour jitter + best epoch,A,15,0,0.6071,0.5429,0.5517,0.4583,23.0
+leaf,L_combo2,B1,colour jitter + label smoothing + best epoch,A,15,0,0.6071,0.5500,0.4483,0.4750,23.0
+mob,M_combo,B2,augmentation + cosine 30 + best epoch,A,30,0,0.7500,0.7286,0.7241,0.6583,56.0
+leaf,B1,-,baseline,A,15,1,0.6071,0.4714,0.3103,0.4750,16.5
+mob,B2,-,baseline,A,15,1,0.7857,0.6500,0.6207,0.5917,15.8
+leaf,L_color,B1,colour jitter,A,15,1,0.6071,0.6143,0.3448,0.4167,14.0
+leaf,L_drop,B1,dropout 0.3,A,15,1,0.6071,0.5643,0.3103,0.4167,10.5
+leaf,L_gap,B1,global average pooling,A,15,1,0.5714,0.4071,0.2759,0.4000,10.2
+leaf,L_adamw,B1,"AdamW, weight decay 1e-2",A,15,1,0.6071,0.4714,0.3103,0.4917,10.2
+leaf,L_ls,B1,label smoothing 0.1,A,15,1,0.6071,0.4571,0.3103,0.5500,10.2
+leaf,L_best,B1,best epoch weights,A,15,1,0.6071,0.4500,0.3793,0.5667,11.3
+leaf,L_cos,B1,"cosine schedule, 30 epochs",A,30,1,0.6786,0.5143,0.3448,0.4917,19.7
+mob,M_frozen,B2,frozen backbone,A,15,1,0.6786,0.6143,0.5172,0.5250,6.6
+mob,M_aug,B2,geometric augmentation,A,15,1,0.7143,0.7571,0.6897,0.6250,16.4
+mob,M_cos,B2,"cosine schedule, 30 epochs",A,30,1,0.7500,0.8071,0.7241,0.7000,39.1
+mob,M_best,B2,best epoch weights,A,15,1,0.7500,0.7286,0.6552,0.6333,24.8
+leaf,L_dataB,B1,training images +B,AB,15,1,0.6071,0.4857,in-train,0.5417,28.8
+leaf,L_dataH,B1,training images +H,AH,15,1,0.6429,0.6286,0.6897,in-train,76.0
+leaf,L_dataBH,B1,training images +B+H,ABH,15,1,0.5357,0.5500,in-train,in-train,89.0
+mob,M_dataB,B2,training images +B,AB,15,1,0.6786,0.6571,in-train,0.5667,40.8
+mob,M_dataH,B2,training images +H,AH,15,1,0.7143,0.7643,0.6897,in-train,114.9
+mob,M_dataBH,B2,training images +B+H,ABH,15,1,0.5714,0.6643,in-train,in-train,211.3
+leaf,L_combo1,B1,colour jitter + best epoch,A,15,1,0.6071,0.5857,0.4483,0.4500,33.3
+leaf,L_combo2,B1,colour jitter + label smoothing + best epoch,A,15,1,0.6071,0.6143,0.5172,0.4167,32.2
+mob,M_combo,B2,augmentation + cosine 30 + best epoch,A,30,1,0.7143,0.6786,0.6552,0.6250,86.1
+leaf,B1,-,baseline,A,15,2,0.4286,0.4786,0.5172,0.4750,23.1
+mob,B2,-,baseline,A,15,2,0.7500,0.6500,0.5517,0.4833,41.9
+leaf,L_color,B1,colour jitter,A,15,2,0.6786,0.6143,0.5862,0.5167,29.4
+leaf,L_drop,B1,dropout 0.3,A,15,2,0.6786,0.4929,0.4483,0.4333,24.4
+leaf,L_gap,B1,global average pooling,A,15,2,0.5357,0.5357,0.2759,0.4833,23.9
+leaf,L_adamw,B1,"AdamW, weight decay 1e-2",A,15,2,0.5714,0.5071,0.5862,0.4583,24.0
+leaf,L_ls,B1,label smoothing 0.1,A,15,2,0.5357,0.4857,0.5862,0.5083,24.0
+leaf,L_best,B1,best epoch weights,A,15,2,0.4286,0.4786,0.5172,0.4750,20.0
+leaf,L_cos,B1,"cosine schedule, 30 epochs",A,30,2,0.6071,0.5429,0.3793,0.4083,22.7
+mob,M_frozen,B2,frozen backbone,A,15,2,0.7143,0.6214,0.5862,0.5000,6.8
+mob,M_aug,B2,geometric augmentation,A,15,2,0.7857,0.7071,0.6207,0.5083,40.0
+mob,M_cos,B2,"cosine schedule, 30 epochs",A,30,2,0.7857,0.7643,0.7241,0.7000,52.1
+mob,M_best,B2,best epoch weights,A,15,2,0.7857,0.7929,0.7931,0.6000,20.6
+leaf,L_dataB,B1,training images +B,AB,15,2,0.5714,0.4357,in-train,0.4583,24.9
+leaf,L_dataH,B1,training images +H,AH,15,2,0.5714,0.5929,0.6207,in-train,88.0
+leaf,L_dataBH,B1,training images +B+H,ABH,15,2,0.5357,0.5357,in-train,in-train,84.8
+mob,M_dataB,B2,training images +B,AB,15,2,0.7500,0.7143,in-train,0.7083,31.3
+mob,M_dataH,B2,training images +H,AH,15,2,0.7857,0.8143,0.6897,in-train,115.9
+mob,M_dataBH,B2,training images +B+H,ABH,15,2,0.7500,0.7214,in-train,in-train,205.8
+leaf,L_combo1,B1,colour jitter + best epoch,A,15,2,0.6786,0.6143,0.5862,0.5167,23.0
+leaf,L_combo2,B1,colour jitter + label smoothing + best epoch,A,15,2,0.6786,0.5643,0.5862,0.4917,22.8
+mob,M_combo,B2,augmentation + cosine 30 + best epoch,A,30,2,0.7857,0.7929,0.7931,0.5917,54.8
