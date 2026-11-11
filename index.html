@@ -106,8 +106,6 @@ document.getElementById('fileInput').addEventListener('change', e => {
   preview.style.display = 'block';
 });
 
-});
-
 function classifyVideo() {
   if (!session || busy || video.readyState < 2) return;
   runInference(video, video.videoWidth, video.videoHeight);
