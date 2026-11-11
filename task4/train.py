@@ -105,13 +105,16 @@ VARIANTS = {
     "L_combo1": dict(family="leaf", parent="B1", change="colour jitter + best epoch", aug="color", best_epoch=True),
     "L_combo2": dict(family="leaf", parent="B1", change="colour jitter + label smoothing + best epoch",
                      aug="color", label_smoothing=0.1, best_epoch=True),
+    "M_aug_cos": dict(family="mob", parent="B2", change="augmentation + cosine 30",
+                      aug="geo", cosine=True, epochs=30),
     "M_combo": dict(family="mob", parent="B2", change="augmentation + cosine 30 + best epoch",
                     aug="geo", cosine=True, epochs=30, best_epoch=True),
 }
 # Fill defaults once, so each variant entry names only what it changes.
 for cfg in VARIANTS.values():
     cfg.setdefault("net", "leaf" if cfg["family"] == "leaf" else "mob")
-    cfg.setdefault("aug", "geo")
+    # Each family keeps its own baseline augmentation, so one change means one.
+    cfg.setdefault("aug", "geo" if cfg["family"] == "leaf" else "none")
     cfg.setdefault("epochs", 15)
     cfg.setdefault("train_set", "A")
     cfg.setdefault("opt", "adam")
