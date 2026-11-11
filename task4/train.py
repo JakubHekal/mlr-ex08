@@ -24,6 +24,7 @@ import argparse
 import csv
 import json
 import random
+import sys
 import time
 import urllib.request
 import zipfile
@@ -35,6 +36,8 @@ import torch.nn as nn
 from PIL import Image
 from torch.utils.data import ConcatDataset, DataLoader, Dataset
 from torchvision import models, transforms
+
+sys.stdout.reconfigure(encoding="utf-8", errors="replace")  # torch.onnx prints emoji on Windows
 
 ROOT = Path(__file__).resolve().parents[1]       # ex08_for_agent
 DATA = ROOT.parent / "data"                      # CC8/data
@@ -406,13 +409,13 @@ def export(name, seed):
     Image.open(check_path).save(ROOT / "check_image.jpg", quality=95)
     x = plain_transform(Image.open(ROOT / "check_image.jpg").convert("RGB")).unsqueeze(0)
     with torch.no_grad():
-        expected = model(x).softmax(dim=1)[0]
+        logits = model(x)[0]
     session = onnxruntime.InferenceSession(str(ROOT / "leaf_model.onnx"))
     raw = session.run(None, {session.get_inputs()[0].name: x.numpy()})[0][0]
-    difference = np.abs(expected.numpy() - raw).max()
-    print(f"exported {name} seed {seed}; PyTorch vs ONNX max difference {difference:.2e}")
+    difference = np.abs(logits.numpy() - raw).max()
+    print(f"exported {name} seed {seed}; PyTorch vs ONNX logit difference {difference:.2e}")
 
-    probabilities = dict(zip(classes, expected.tolist()))
+    probabilities = dict(zip(classes, logits.softmax(dim=0).tolist()))
     (ROOT / "check_expected.json").write_text(json.dumps(probabilities, indent=1))
     print(probabilities)
 
